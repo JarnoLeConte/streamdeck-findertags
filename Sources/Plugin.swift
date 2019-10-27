@@ -11,7 +11,7 @@ import Foundation
 public class Plugin: NSObject, ESDEventsProtocol {
     var connectionManager: ESDConnectionManager?;
     var knownContexts: [Any] = [];
-    
+
     public func setConnectionManager(_ connectionManager: ESDConnectionManager) {
         self.connectionManager = connectionManager;
     }
@@ -27,11 +27,17 @@ public class Plugin: NSObject, ESDEventsProtocol {
     public func willAppear(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
         // Add the context to the list of known contexts
         knownContexts.append(context)
+
+        let script = scriptForAdding(tags: ["Red", "Blue"])
+        executeAppleScript(source: script)
     }
     
     public func willDisappear(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
         // Remove the context from the list of known contexts
         knownContexts.removeAll { isEqualContext($0, context) }
+
+        let script = scriptForRemoving(tags: ["Red", "Blue"])
+        executeAppleScript(source: script)
     }
     public func deviceDidConnect(_ deviceID: String, withDeviceInfo deviceInfo: [AnyHashable : Any]) {
         // Nothing to do
