@@ -10,7 +10,8 @@
 		2B1A8B7023659BCF001963B2 /* AppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A8B6F23659BCF001963B2 /* AppleScript.swift */; };
 		2B1E32AB235BC1F80082122F /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1E32AA235BC1F80082122F /* Plugin.swift */; };
 		2B1E32AF235BCE8C0082122F /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1E32AE235BCE8C0082122F /* utils.swift */; };
-		2BC96A22235E5A9500B27FF2 /* Plugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA0F7B772105CBC30028CF34 /* Plugin */; };
+		2B6CECDF23664DD8001CE967 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CECDE23664DD8001CE967 /* Tags.swift */; };
+		2BB51E232366460A009BEE3D /* SOExtendedAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB51E222366460A009BEE3D /* SOExtendedAttributes.m */; };
 		FA29E473215E7D2300C9F60C /* ESDConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA29E46E215E7D2300C9F60C /* ESDConnectionManager.m */; };
 		FA29E474215E7D2300C9F60C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA29E46F215E7D2300C9F60C /* main.m */; };
 		FA80591421623A0D00ED7E12 /* ESDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = FA80591321623A0D00ED7E12 /* ESDUtilities.m */; };
@@ -41,10 +42,9 @@
 		FA0F7B752105CBC30028CF34 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = /Users/Jarno/dev/projects/streamdeck/findertags/Sources/me.hckr.findertags.sdPlugin;
+			dstPath = /Users/jarno/dev/streamdeck/findertags/Sources/me.hckr.findertags.sdPlugin;
 			dstSubfolderSpec = 0;
 			files = (
-				2BC96A22235E5A9500B27FF2 /* Plugin in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +55,9 @@
 		2B1E32A5235BB54C0082122F /* Plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		2B1E32AA235BC1F80082122F /* Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		2B1E32AE235BCE8C0082122F /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		2B6CECDE23664DD8001CE967 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		2BB51E21236645CB009BEE3D /* SOExtendedAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SOExtendedAttributes.h; path = Vendor/SOExtendedAttributes/SOExtendedAttributes.h; sourceTree = SOURCE_ROOT; };
+		2BB51E222366460A009BEE3D /* SOExtendedAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SOExtendedAttributes.m; path = Vendor/SOExtendedAttributes/SOExtendedAttributes.m; sourceTree = SOURCE_ROOT; };
 		FA0F7B772105CBC30028CF34 /* Plugin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA29E46E215E7D2300C9F60C /* ESDConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESDConnectionManager.m; sourceTree = "<group>"; };
 		FA29E46F215E7D2300C9F60C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,9 +125,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BB51E2023664594009BEE3D /* SOExtendedAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				2BB51E21236645CB009BEE3D /* SOExtendedAttributes.h */,
+				2BB51E222366460A009BEE3D /* SOExtendedAttributes.m */,
+			);
+			path = SOExtendedAttributes;
+			sourceTree = "<group>";
+		};
 		FA0F7B6E2105CBC30028CF34 = {
 			isa = PBXGroup;
 			children = (
+				2B6CECDE23664DD8001CE967 /* Tags.swift */,
+				2BB51E2023664594009BEE3D /* SOExtendedAttributes */,
 				2B1A8B6F23659BCF001963B2 /* AppleScript.swift */,
 				2B1E32AA235BC1F80082122F /* Plugin.swift */,
 				FA29E46D215E7D2300C9F60C /* Common */,
@@ -355,11 +369,13 @@
 				FAC7C81F2122CE1D000262E7 /* SRHash.m in Sources */,
 				FAC7C81E2122CE1D000262E7 /* SRError.m in Sources */,
 				FAC7C8192122CE1D000262E7 /* SRIOConsumerPool.m in Sources */,
+				2BB51E232366460A009BEE3D /* SOExtendedAttributes.m in Sources */,
 				FA80591421623A0D00ED7E12 /* ESDUtilities.m in Sources */,
 				2B1E32AF235BCE8C0082122F /* utils.swift in Sources */,
 				FAC7C8292122CE1D000262E7 /* SRWebSocket.m in Sources */,
 				FAC7C8232122CE1D000262E7 /* SRRandom.m in Sources */,
 				FAC7C81D2122CE1D000262E7 /* SRConstants.m in Sources */,
+				2B6CECDF23664DD8001CE967 /* Tags.swift in Sources */,
 				FAC7C81A2122CE1D000262E7 /* SRProxyConnect.m in Sources */,
 				FAC7C81C2122CE1D000262E7 /* SRPinningSecurityPolicy.m in Sources */,
 				FA29E474215E7D2300C9F60C /* main.m in Sources */,

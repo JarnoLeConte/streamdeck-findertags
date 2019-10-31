@@ -1,94 +1,36 @@
-# Stream Deck Plugin Template: Swift
+![](Sources/me.hckr.findertags.sdPlugin/images/PluginIcon.png)
 
-Use this template for creating a new [Stream Deck](https://www.elgato.com/gaming/stream-deck) plugin written in Swift (macOS only).
-Implementation is based on the example plugin `AppleMail` provided by [Elgato](https://github.com/elgatosf/streamdeck-applemail) written in Objective-C.
+# Finder Tags plugin for Stream Deck
 
+This Stream Deck plugin will let you add color labels to file(s) and folder(s) in the Finder.
+
+![](screenshot-finder.png)
 
 # Description
 
-If you want to create your own Stream Deck plugin for Mac, you can use this template if you prefer to write it in [Swift](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html).
+With this plugin installed, you can easily add/remove tags by pressing the color buttons on your Stream Deck. You can also choose to use the color wheel, which is a single button, so there is more space left on the Stream Deck. The color wheel will let you tap through the colors Red, Orange, Yellow, Green, Blue, Purple, Gray. Furthermore you can create a button for assigning a custom tag, which you can give any label you want, and in addition to that you can give the custom tag a color too.
 
+It's made for *macOS* only.
 
 # Features
 
-- boilerplate to setup plugin and handle events
-- code written in Swift
-- make use of Objective-C libraries
+- 7 color buttons for quickly adding a color tag to the selected files.
+- A color wheel, which rotates the color in the following order: ```Red, Orange, Yellow, Green, Blue, Purple, Gray```
+- Assign custom tags, optionally with a color.
+- A single button for clearing all tags from the selected files.
+
+![](screenshot-streamdeck.png)
+
+# How to install
+
+1. Download the latest release from the [releases](https://github.com/JarnoLeConte/streamdeck-findertags/releases) page.
+2. Double click the `me.hckr.findertags.streamDeckPlugin` to install.
+
+# Info for developers
+
+- It's built with the following template: [streamdeck-template-swift](https://github.com/JarnoLeConte/streamdeck-template-swift)
+- Code written in Swift
+- Uses the Property Inspector (PI) to configure custom tags
+- PI written in React
+- Runs AppleScript
 - macOS only
-
-![](screenshot.png)
-
-
-# Getting started
-
-1. The Sources folder contains the source code of the plugin.
-2. Open the `StreamDeckPlugin.xcodeproj` in Xcode.
-3. Start writing code in `Plugin.swift` where you can handle events like `keyDown`, `keyUp`, `willAppear`, etc...
-4. Send commands to Stream Deck using the `connectionManager` instance available in `Plugin.swift`.
-5. Finnaly you plugin should be bundled in the folder `com.COMPANYNAME.PLUGINNAME.sdPlugin` (replace `COMPANYNAME` and `PLUGINNAME`), and add a `manifest.json` file and other resources such as images.
-
-# Events
-
-This are all events that you can handle in `Plugin.swift`:
-
-```Swift
-public func keyDown(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
-    // Nothing to do
-}
-
-public func keyUp(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
-    // Nothing to do
-}
-
-public func willAppear(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
-    // Nothing to do
-}
-
-public func willDisappear(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
-    // Nothing to do
-}
-public func deviceDidConnect(_ deviceID: String, withDeviceInfo deviceInfo: [AnyHashable : Any]) {
-    // Nothing to do
-}
-
-public func deviceDidDisconnect(_ deviceID: String) {
-    // Nothing to do
-}
-
-public func applicationDidLaunch(_ applicationInfo: [AnyHashable : Any]) {
-    // Nothing to do
-}
-
-public func applicationDidTerminate(_ applicationInfo: [AnyHashable : Any]) {
-    // Nothing to do
-}
-```
-
-If you need to handle other events you have to define them yourself in `Common/ESDEventsProtocol.h` and dispatch them in `Common/ESDConnectionManager.m`.
-
-# Send commands to Stream Deck
-
-If you want to send something to the Stream Deck, you can use the methods defined on the `connectionManager`. The `connectionManager` implements the following methods. You can call them from inside the event handlers.
-
-```swift
-connectionManager?.setTitle("New title", withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
-
-connectionManager?.setImage(someBase64ImageString, withContext: context, withTarget: ESDSDKTarget.HardwareOnly.rawValue)
-
-connectionManager?.showAlert(forContext: context)
-
-connectionManager?.showOK(forContext: context)
-
-connectionManager?.setSettings(["key1": "value1", "key2": "value2"], forContext: context)
-
-connectionManager?.setState(1, forContext: context)
-
-connectionManager?.logMessage("Some log message")
-
-```
-
-If you want to call some other stream deck method, you have to define it yourself in `Common/ESDConnectionManager.m` and implement it in `Common/ESDConnectionManager.m`.
-
-# More information
-
-More information about writing Stream Deck plugins in general can be found on the [Developer section](https://developer.elgato.com/documentation/stream-deck/sdk/overview/) at the web site of [Elgato](https://developer.elgato.com/documentation/stream-deck/sdk/overview/).

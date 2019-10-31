@@ -6,3 +6,4 @@
 #import "ESDSDKDefines.h"
 #import "ESDEventsProtocol.h"
 #import "ESDUtilities.h"
+#import "SOExtendedAttributes.h"

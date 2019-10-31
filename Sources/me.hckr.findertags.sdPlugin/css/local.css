@@ -1,0 +1,61 @@
+input[type="radio"] + label span.tag-Red {
+  background: #EF7063;
+  border-color: #EB5142;
+}
+
+input[type="radio"] + label span.tag-Orange {
+  background: #EDA95D;
+  border-color: #EA973A;
+}
+
+input[type="radio"] + label span.tag-Yellow {
+  background: #EFCF67;
+  border-color: #EBC446;
+}
+
+input[type="radio"] + label span.tag-Green {
+  background: #88C864;
+  border-color: #7EC359;
+}
+
+input[type="radio"] + label span.tag-Blue {
+  background: #6FB7EF;
+  border-color: #5CADEB;
+}
+
+input[type="radio"] + label span.tag-Purple {
+  background: #C78EDC;
+  border-color: #C080D8;
+}
+
+input[type="radio"] + label span.tag-Gray {
+  background: #A4A4A7;
+  border-color: #98989B;
+}
+
+input[type="radio"] + label span.tag-Custom {
+  background: transparent;
+  border-color: #98989B;
+}
+
+
+
+
+
+input[type="radio"] + label span {
+  border-width: 1px;
+}
+
+input[type="radio"]:checked + label span {
+  border-color: white;
+  border-width: 1px;
+}
+
+input[type="radio"]:checked + label span::after {
+  content: '✓';
+  color: white !important;
+  font-weight: bold;
+  position: relative;
+  top: 0px;
+  left: -3px;
+}

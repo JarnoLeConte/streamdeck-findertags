@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-    <html>
+<html>
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <title>Property Inspector Samples PI</title>
-        <link rel="stylesheet" href="css/sdpi.css">
-        <!--link rel="stylesheet"
-              media="screen and (max-width: 1025px)"
-              href="css/local.css" -->
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
 
-    </head>
+    <title>Finder Tags</title>
 
-    <body>
-        <div class="sdpi-wrapper">
-            <div class="sdpi-item">
-                <div class="sdpi-item-label">Hello</div>
-                <input class="sdpi-item-value" id="myname" value="My name is StreamDeck">
-            </div>
+    <link rel="stylesheet" href="css/sdpi.css">
+    <link rel="stylesheet" href="css/local.css">
 
-        <!-- <script src="echomd.js"></script> -->
-        <script src="index_pi.js"></script>
+    <script src="./vendor/babel.min.js"></script>
+    <script src="./vendor/react.production.min.js"></script>
+    <script src="./vendor/react-dom.production.min.js"></script>
+</head>
 
-    </body>
+<body>
+    <div class="sdpi-wrapper"></div>
+    <script src="index_pi.jsx" type="text/babel"></script>
+</body>
 
-    </html>
+</html>

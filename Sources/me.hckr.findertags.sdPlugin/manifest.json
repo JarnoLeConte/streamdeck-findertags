@@ -1,14 +1,159 @@
 {
   "Actions": [
     {
-      "Icon": "images/ActionIcon",
-      "Name": "Add Finder Tag",
+      "Icon": "images/TagRedIcon",
+      "Name": "Red Tag",
       "SupportedInMultiActions": false,
-      "Tooltip": "Add or remove a finder tag.",
-      "UUID": "me.hckr.findertags.action",
+      "Tooltip": "Add a RED label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-red",
       "States": [
         {
-          "Image": "images/PluginIcon"
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#EF7063",
+          "Title": "Red\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagOrangeIcon",
+      "Name": "Orange Tag",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Add a ORANGE label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-orange",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#EDA95D",
+          "Title": "Orange\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagYellowIcon",
+      "Name": "Yellow Tag",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Add a YELLOW label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-yellow",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#EFCF67",
+          "Title": "Yellow\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagGreenIcon",
+      "Name": "Green Tag",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Add a GREEN label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-green",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#88C864",
+          "Title": "Green\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagBlueIcon",
+      "Name": "Blue Tag",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Add a BLUE label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-blue",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#6FB7EF",
+          "Title": "Blue\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagPurpleIcon",
+      "Name": "Purple Tag",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Add a PURPLE label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-purple",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#C78EDC",
+          "Title": "Purple\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagGrayIcon",
+      "Name": "Gray Tag",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Add a GRAY label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.tag-gray",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#A4A4A7",
+          "Title": "Gray\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/TagCustomIcon",
+      "Name": "Custom Tag",
+      "SupportedInMultiActions": false,
+      "PropertyInspectorPath": "index_pi.html",
+      "Tooltip": "Add a custom label to the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.custom-tag",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "12",
+          "TitleColor": "#ffffff",
+          "Title": "Custom\nTag\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/ClearIcon",
+      "Name": "Clear Tags",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Remove all tags from the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.clear-tags",
+      "States": [
+        {
+          "Image": "images/TagKey",
+          "TitleAlignment": "middle",
+          "FontSize": "14",
+          "TitleColor": "#ffffff",
+          "Title": "Clear\n"
+        }
+      ]
+    },
+    {
+      "Icon": "images/ColorWheelIcon",
+      "Name": "Color Wheel",
+      "SupportedInMultiActions": false,
+      "Tooltip": "Use the color wheel to rotate the color of the selected file(s) and folder(s) in the Finder.",
+      "UUID": "me.hckr.findertags.color-wheel",
+      "States": [
+        {
+          "Image": "images/ColorWheelKey"
         }
       ]
     }
@@ -16,13 +161,13 @@
   "SDKVersion": 2,
   "Author": "Jarno Le Conté",
   "CodePath": "Plugin",
-  "PropertyInspectorPath": "index_pi.html",
-  "Description": "Add colored labels (tags) to files and folders in the Finder",
+  "Description": "Add colored labels to files and folders in the Finder",
   "Name": "Finder Tags",
   "Icon": "images/PluginIcon",
   "URL": "https://github.com/JarnoLeConte/streamdeck-findertags",
   "Version": "1.0",
-  "Category": "Productivity",
+  "Category": "Finder Tags",
+  "CategoryIcon": "images/CategoryIcon",
   "OS": [
     {
         "Platform": "mac",
