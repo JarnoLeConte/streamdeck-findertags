@@ -65,6 +65,12 @@ public class Plugin: NSObject, ESDEventsProtocol {
                 connectionManager?.setImage(base64Image, withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
             }
         }
+        if action.starts(with: "me.hckr.findertags.color-wheel") {
+            let settings = payload["settings"] as? [AnyHashable : Any];
+            if let image = settings?["image"] as? String {
+                connectionManager?.setImage(image, withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
+            }
+        }
     }
     
     func refreshTitle(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
@@ -86,10 +92,17 @@ public class Plugin: NSObject, ESDEventsProtocol {
         // Rotate color, which replace the current color by the next color on the color wheel
         if action.starts(with: "me.hckr.findertags.color-wheel") {
             let tags = getCommonTags(for: selectedFileUrls)
+            let settings = payload["settings"] as? [AnyHashable : Any];
+            // Map color wheel configuration to a list of color tag tuples (enum: Color, tagName: String)
+            let colorWheelTags = (settings?["tags"] as? [[AnyHashable : Any]])?
+                .map { ($0["color"] as! String, $0["enabled"] as! Bool) }
+                .filter { (_, enabled) in enabled }
+                .compactMap { (colorName, _) in colorTags.first(where: { $1 == colorName }) };
+            let enabledColorTags = colorWheelTags != nil ? colorWheelTags! : colorTags
             let nextTags: [Tag] = {
-                let index = tags.count == 0 ? -1 : colorTags.firstIndex(where: { $0.1 == tags[0].1 }) ?? -1
-                let nextIndex = index == colorTags.count - 1 ? -1 : index + 1
-                return nextIndex == -1 ? [] : [colorTags[nextIndex]]
+                let index = tags.count == 0 ? -1 : enabledColorTags.firstIndex(where: { $0.1 == tags[0].1 }) ?? -1
+                let nextIndex = index == enabledColorTags.count - 1 ? -1 : index + 1
+                return nextIndex == -1 ? [] : [enabledColorTags[nextIndex]]
             }();
             setTags(nextTags, for: selectedFileUrls)
         }

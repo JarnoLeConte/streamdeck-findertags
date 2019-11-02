@@ -81,7 +81,7 @@ const PI = ({ settings, setSettings }) => {
                 </div>
                 <input
                     class="sdpi-item-value"
-                    placeholder="Tag Name"
+                    placeholder="Custom Tag Name"
                     value={tag}
                     onChange={e => setTag(e.target.value)}
                     required
