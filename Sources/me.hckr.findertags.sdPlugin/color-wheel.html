@@ -20,6 +20,41 @@
 
 <body>
     <div class="sdpi-wrapper"></div>
+    <script>
+        function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {
+            const actionInfo = JSON.parse(inActionInfo);
+
+            const websocket = new WebSocket('ws://127.0.0.1:' + inPort);
+
+            websocket.onopen = function () {
+                // register property inspector to Stream Deck
+                websocket.send(JSON.stringify({
+                    event: inRegisterEvent,
+                    uuid: inUUID,
+                }));
+            }
+
+            function setSettings(settings) {
+                if (websocket && (websocket.readyState === 1)) {
+                    websocket.send(JSON.stringify({
+                        'event': 'setSettings',
+                        'context': inUUID,
+                        'payload': settings,
+                    }));
+                }
+            }
+
+            (function start() {
+                if (!window.startup) return setTimeout(start, 200);
+
+                startup({
+                    container: document.querySelector('.sdpi-wrapper'),
+                    settings: actionInfo.payload.settings,
+                    setSettings,
+                });
+            })();
+        }
+    </script>
     <script src="color-wheel.jsx" type="text/babel"></script>
 </body>
 
