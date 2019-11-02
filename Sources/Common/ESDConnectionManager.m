@@ -360,6 +360,12 @@
 	 			[self.delegate applicationDidTerminate:payload];
 	 		}
 	 	}
+        else if ([event isEqualToString:@kESDSDKEventDidReceiveSettings]) {
+            if([self.delegate respondsToSelector:@selector(didReceiveSettingsForAction:withContext:withPayload:forDevice:)])
+             {
+                 [self.delegate didReceiveSettingsForAction:action withContext:context withPayload:payload forDevice:deviceID];
+             }
+        }
 	}
 	@catch(...)
 	{

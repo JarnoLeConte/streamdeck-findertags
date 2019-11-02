@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)applicationDidLaunch:(NSDictionary *)applicationInfo;
 - (void)applicationDidTerminate:(NSDictionary *)applicationInfo;
 
+- (void)didReceiveSettingsForAction:(NSString *)action withContext:(id)context withPayload:(NSDictionary *)payload forDevice:(NSString *)deviceID;
+
 @end
 
 

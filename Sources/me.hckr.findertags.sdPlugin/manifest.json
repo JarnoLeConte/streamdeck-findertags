@@ -8,11 +8,12 @@
       "UUID": "me.hckr.findertags.tag-red",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/RedTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#EF7063",
-          "Title": "Red\n"
+          "Title": "Red"
         }
       ]
     },
@@ -24,11 +25,12 @@
       "UUID": "me.hckr.findertags.tag-orange",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/OrangeTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#EDA95D",
-          "Title": "Orange\n"
+          "Title": "Orange"
         }
       ]
     },
@@ -40,11 +42,12 @@
       "UUID": "me.hckr.findertags.tag-yellow",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/YellowTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#EFCF67",
-          "Title": "Yellow\n"
+          "Title": "Yellow"
         }
       ]
     },
@@ -56,11 +59,12 @@
       "UUID": "me.hckr.findertags.tag-green",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/GreenTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#88C864",
-          "Title": "Green\n"
+          "Title": "Green"
         }
       ]
     },
@@ -72,11 +76,12 @@
       "UUID": "me.hckr.findertags.tag-blue",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/BlueTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#6FB7EF",
-          "Title": "Blue\n"
+          "Title": "Blue"
         }
       ]
     },
@@ -88,11 +93,12 @@
       "UUID": "me.hckr.findertags.tag-purple",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/PurpleTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#C78EDC",
-          "Title": "Purple\n"
+          "Title": "Purple"
         }
       ]
     },
@@ -104,11 +110,12 @@
       "UUID": "me.hckr.findertags.tag-gray",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/GrayTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#A4A4A7",
-          "Title": "Gray\n"
+          "Title": "Gray"
         }
       ]
     },
@@ -121,27 +128,29 @@
       "UUID": "me.hckr.findertags.custom-tag",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "12",
+          "Image": "images/CustomTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#ffffff",
-          "Title": "Custom\nTag\n"
+          "Title": ""
         }
       ]
     },
     {
       "Icon": "images/ClearIcon",
-      "Name": "Clear Tags",
+      "Name": "Clear All Tags",
       "SupportedInMultiActions": false,
       "Tooltip": "Remove all tags from the selected file(s) and folder(s) in the Finder.",
       "UUID": "me.hckr.findertags.clear-tags",
       "States": [
         {
-          "Image": "images/TagKey",
-          "TitleAlignment": "middle",
-          "FontSize": "14",
+          "Image": "images/ClearTagKey",
+          "ShowTitle": true,
+          "TitleAlignment": "bottom",
+          "FontSize": "11",
           "TitleColor": "#ffffff",
-          "Title": "Clear\n"
+          "Title": "Clear"
         }
       ]
     },

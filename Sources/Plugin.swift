@@ -11,7 +11,7 @@ import Foundation
 
 public class Plugin: NSObject, ESDEventsProtocol {
     var connectionManager: ESDConnectionManager?
-    var knownContexts: [Any] = []
+    
     let tagger = Tagger()
     let colorTags: [Tag] = [
         (.Red, "Red"),
@@ -54,6 +54,28 @@ public class Plugin: NSObject, ESDEventsProtocol {
         }
     }
     
+    func refreshImage(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
+        if action.starts(with: "me.hckr.findertags.custom-tag") {
+            let settings = payload["settings"] as? [AnyHashable : Any];
+            if let tagColor = settings?["color"] as? String,
+                let imagePath = Bundle.main.path(forResource: "images/\(tagColor)TagKey@2x", ofType: "png"),
+                let imageData:NSData = NSData.init(contentsOfFile: imagePath) {
+                let base64ImageData = imageData.base64EncodedString(options: .lineLength64Characters)
+                let base64Image = "data:image/png;base64,\(base64ImageData)"
+                connectionManager?.setImage(base64Image, withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
+            }
+        }
+    }
+    
+    func refreshTitle(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
+        if action.starts(with: "me.hckr.findertags.custom-tag") {
+            let settings = payload["settings"] as? [AnyHashable : Any];
+            let tagName = settings?["tag"] as? String
+            let title = tagName != nil && tagName != "" ? tagName : "Custom"
+            connectionManager?.setTitle(title, withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
+        }
+    }
+    
     public func keyDown(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
         guard let selectedFileUrls = getSelectedFileUrls() else { return }
         
@@ -75,7 +97,8 @@ public class Plugin: NSObject, ESDEventsProtocol {
         if action.starts(with: "me.hckr.findertags.custom-tag") {
             let settings = payload["settings"] as? [AnyHashable : Any];
             if let tagName = settings?["tag"] as? String,
-                let tagColor = settings?["color"] as? String {
+                let tagColor = settings?["color"] as? String,
+                tagName != "" {
                 let tags = getCommonTags(for: selectedFileUrls)
                 if tags.contains(where: { $0.1 == tagName }) {
                     setTags(tags.filter({ $0.1 != tagName }), for: selectedFileUrls)
@@ -106,13 +129,12 @@ public class Plugin: NSObject, ESDEventsProtocol {
     }
     
     public func willAppear(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
-        // Add the context to the list of known contexts
-        knownContexts.append(context)
+        refreshImage(forAction: action, withContext: context, withPayload: payload, forDevice: deviceID)
+        refreshTitle(forAction: action, withContext: context, withPayload: payload, forDevice: deviceID)
     }
     
     public func willDisappear(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
-        // Remove the context from the list of known contexts
-        knownContexts.removeAll { isEqualContext($0, context) }
+        // Nothing to do
     }
     public func deviceDidConnect(_ deviceID: String, withDeviceInfo deviceInfo: [AnyHashable : Any]) {
         // Nothing to do
@@ -128,6 +150,11 @@ public class Plugin: NSObject, ESDEventsProtocol {
     
     public func applicationDidTerminate(_ applicationInfo: [AnyHashable : Any]) {
         // Nothing to do
+    }
+    
+    public func didReceiveSettings(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
+        refreshImage(forAction: action, withContext: context, withPayload: payload, forDevice: deviceID)
+        refreshTitle(forAction: action, withContext: context, withPayload: payload, forDevice: deviceID)
     }
 }
 
