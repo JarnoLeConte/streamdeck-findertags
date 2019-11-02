@@ -13,15 +13,6 @@ public class Plugin: NSObject, ESDEventsProtocol {
     var connectionManager: ESDConnectionManager?
     
     let tagger = Tagger()
-    let colorTags: [Tag] = [
-        (.Red, "Red"),
-        (.Orange, "Orange"),
-        (.Yellow, "Yellow"),
-        (.Green, "Green"),
-        (.Blue, "Blue"),
-        (.Purple, "Purple"),
-        (.Gray, "Gray"),
-    ]
 
     public func setConnectionManager(_ connectionManager: ESDConnectionManager) {
         self.connectionManager = connectionManager
@@ -80,6 +71,12 @@ public class Plugin: NSObject, ESDEventsProtocol {
             let title = tagName != nil && tagName != "" ? tagName : "Custom"
             connectionManager?.setTitle(title, withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
         }
+        if action.starts(with: "me.hckr.findertags.tag-") {
+            let colorName = action.replacingOccurrences(of: "me.hckr.findertags.tag-", with: "").capitalized;
+            let localizedTag = tagger.localize(tag: (color(for: colorName), colorName))
+            let title = localizedTag.1
+            connectionManager?.setTitle(title, withContext: context, withTarget: ESDSDKTarget.HardwareAndSoftware.rawValue)
+        }
     }
     
     public func keyDown(forAction action: String, withContext context: Any, withPayload payload: [AnyHashable : Any], forDevice deviceID: String) {
@@ -97,10 +94,10 @@ public class Plugin: NSObject, ESDEventsProtocol {
             let colorWheelTags = (settings?["tags"] as? [[AnyHashable : Any]])?
                 .map { ($0["color"] as! String, $0["enabled"] as! Bool) }
                 .filter { (_, enabled) in enabled }
-                .compactMap { (colorName, _) in colorTags.first(where: { $1 == colorName }) };
+                .compactMap { (colorName, _) in colorTags.first(where: { $1.capitalized == colorName.capitalized }) };
             let enabledColorTags = colorWheelTags != nil ? colorWheelTags! : colorTags
             let nextTags: [Tag] = {
-                let index = tags.count == 0 ? -1 : enabledColorTags.firstIndex(where: { $0.1 == tags[0].1 }) ?? -1
+                let index = tags.count == 0 ? -1 : enabledColorTags.firstIndex(where: { $0.1.capitalized == tags[0].1.capitalized }) ?? -1
                 let nextIndex = index == enabledColorTags.count - 1 ? -1 : index + 1
                 return nextIndex == -1 ? [] : [enabledColorTags[nextIndex]]
             }();
@@ -112,12 +109,12 @@ public class Plugin: NSObject, ESDEventsProtocol {
             if let tagName = settings?["tag"] as? String,
                 let tagColor = settings?["color"] as? String,
                 tagName != "" {
+                let localizedTag = tagger.delocalize(tag: (color(for: tagColor), tagName))
                 let tags = getCommonTags(for: selectedFileUrls)
-                if tags.contains(where: { $0.1 == tagName }) {
-                    setTags(tags.filter({ $0.1 != tagName }), for: selectedFileUrls)
+                if tags.contains(where: { $0.1.capitalized == localizedTag.1.capitalized }) {
+                    setTags(tags.filter({ $0.1.capitalized != localizedTag.1.capitalized }), for: selectedFileUrls)
                 } else {
-                    let newTag = (color(for: tagColor), tagName)
-                    setTags(tags + [newTag], for: selectedFileUrls)
+                    setTags(tags + [localizedTag], for: selectedFileUrls)
                 }
             } else {
                 connectionManager?.showAlert(forContext: context)
@@ -128,7 +125,7 @@ public class Plugin: NSObject, ESDEventsProtocol {
             let colorName = action.replacingOccurrences(of: "me.hckr.findertags.tag-", with: "").capitalized;
             let tags = getCommonTags(for: selectedFileUrls)
             
-            if tags.contains(where: { $0.1 == colorName }) {
+            if tags.contains(where: { $0.1.capitalized == colorName.capitalized }) {
                 setTags(tags.filter({ $0.1 != colorName }), for: selectedFileUrls)
             } else {
                 let newTag = (color(for: colorName), colorName)
