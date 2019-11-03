@@ -8,18 +8,9 @@ const DEFAULT_TAGS = [
     { color: 'Gray', enabled: true },
 ];
 
-// Preload data
-const colorWheelImage = new Image();
-colorWheelImage.ready = false;
-colorWheelImage.src = 'images/ColorWheelIcon@2x.png';
-colorWheelImage.onload = () => {
-    colorWheelImage.ready = true;
-};
-
-
 /* Helpers */
 
-const drawTagsOnCanvas = (tags, canvas) => {
+const drawTagsOnCanvas = (tags, canvas, colorWheelImage) => {
     const ctx = canvas.getContext("2d");
 
     const enabledTags = tags.filter((t) => t.enabled);
@@ -32,7 +23,7 @@ const drawTagsOnCanvas = (tags, canvas) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw colorwheel icon in the center
-    if (colorWheelImage.ready) {
+    if (colorWheelImage) {
         ctx.drawImage(colorWheelImage, centerX - colorWheelImage.width/2, centerY - colorWheelImage.height/2);
     }
 
@@ -103,14 +94,28 @@ const SortableTags = ({ tags, setTags }) => (
 // React component for rendering the property inspector
 const PI = ({ settings, setSettings }) => {
     const [tags, setTags] = React.useState(settings.tags || DEFAULT_TAGS);
+    const [colorWheelImage, setColorWheelImage] = React.useState(null);
     const canvasRef = React.useRef(null);
 
     // Persist settings once the state changes
     React.useEffect(() => {
-        drawTagsOnCanvas(tags, canvasRef.current);
-        const image = canvasRef.current.toDataURL();
-        setSettings({ tags, image });
-    }, [tags]);
+        if (colorWheelImage) {
+            drawTagsOnCanvas(tags, canvasRef.current, colorWheelImage);
+            const image = canvasRef.current.toDataURL();
+            setSettings({ tags, image });
+        } else {
+            setSettings({ tags });
+        }
+    }, [tags, colorWheelImage]);
+
+    // Load resources
+    React.useEffect(() => {
+        const img = new Image();
+        img.onload = () => {
+            setColorWheelImage(img);
+        };
+        img.src = 'images/ColorWheelIcon@2x.png';
+    }, []);
 
     return (
         <div>
