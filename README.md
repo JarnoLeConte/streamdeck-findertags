@@ -16,8 +16,10 @@ It's made for *macOS* only.
 
 - 7 color buttons for quickly adding a color tag to the selected files.
 - A color wheel, which rotates the color in the following order: ```Red, Orange, Yellow, Green, Blue, Purple, Gray```
-- Assign custom tags, optionally with a color.
+- Customize color wheel with tags you use the most
+- Create custom tags, optionally with a color.
 - A single button for clearing all tags from the selected files.
+- Localized tag names
 
 ![](screenshot-streamdeck.png)
 
