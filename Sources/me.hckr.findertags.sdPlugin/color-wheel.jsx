@@ -27,8 +27,8 @@ const drawTagsOnCanvas = (tags, canvas, colorWheelImage) => {
         ctx.drawImage(colorWheelImage, centerX - colorWheelImage.width/2, centerY - colorWheelImage.height/2);
     }
 
-    const drawTag = (index, fillColor, strokeColor) => {
-        const a = (index / totalCount) * 2 * Math.PI - (0.5 * Math.PI);
+    const drawTag = (index, fillColor, strokeColor, lineDash = []) => {
+        const a = (index / totalCount) * 2 * Math.PI + (0.5 * Math.PI);
         const x = centerX + centerRadius * Math.cos(a);
         const y = centerY + centerRadius * Math.sin(a);
         const r = 13;
@@ -38,13 +38,14 @@ const drawTagsOnCanvas = (tags, canvas, colorWheelImage) => {
         ctx.lineWidth = 2
 
         ctx.beginPath();
+        ctx.setLineDash(lineDash);
         ctx.arc(x, y, r, 0, 2 * Math.PI);
         if (strokeColor) ctx.stroke();
         if (fillColor) ctx.fill();
     }
 
     // draw Custom tag
-    drawTag(0, null, "#98989B");
+    drawTag(0, null, "#98989B", [5, 5]);
 
     // draw Color tags
     enabledTags.forEach((tag, index) => {
