@@ -171,11 +171,11 @@
   "SDKVersion": 2,
   "Author": "Jarno Le Conté",
   "CodePath": "Plugin",
-  "Description": "Add colored labels to files and folders in the Finder",
+  "Description": "Add color labels to files and folders in the Finder",
   "Name": "Finder Tags",
   "Icon": "images/PluginIcon",
   "URL": "https://github.com/JarnoLeConte/streamdeck-findertags",
-  "Version": "1.0",
+  "Version": "1.1.0",
   "Category": "Finder Tags",
   "CategoryIcon": "images/CategoryIcon",
   "OS": [
